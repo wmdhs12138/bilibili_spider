@@ -9,7 +9,7 @@ class BilibiliRank:
 
     def save(self, data):
         table = 'Rank{}'.format(str(datetime.date.today()).replace('-', ''))
-        columns = ['mid', 'author', 'title', 'aid', 'pts']
+        columns = ['mid', 'author', 'title', 'bvid', 'pts']
         columns_type = ['Int', 'text', 'text', 'text', 'Int']
         primary_key = 'PRIMARY KEY ({})'.format(columns[3])
         self.set.cDB(table, columns, columns_type, primary_key)
@@ -18,7 +18,7 @@ class BilibiliRank:
             dic['{}'.format(columns[0])] = each['mid']
             dic[columns[1]] = "'{}'".format(each['author'])
             dic[columns[2]] = "'{}'".format(each['title'])
-            dic[columns[3]] = "'av{}'".format(each['aid'])
+            dic[columns[3]] = "'{}'".format(each['bvid'])
             dic[columns[4]] = each['pts']
             self.set.wDB(table, dic.keys(), dic.values())
         print('written successfully')
